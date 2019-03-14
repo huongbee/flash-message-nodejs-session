@@ -1,0 +1,26 @@
+const express = require('express')
+const flash = require('connect-flash'); //1
+const session = require('express-session') //4
+
+const app = express()
+
+//5
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+}))
+
+app.use(flash()) //2
+
+//3
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    next()
+})
+
+
+if(error_msg!=''){
+  error_msg
+}
